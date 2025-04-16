@@ -2,8 +2,15 @@
 
 {% block content %}
 
-You are visiting the homepage.
-
 <!-- TODO: Display a list of users here, with each linking to their profile -->
+<p>
+  List of users:
+  <ul>
+    {% for user in all_users %}
+      <li><a href="{{ url_for('main.profile', username=user.username)}}">{{ user.username }}</a></li>
+    {% endfor %}
+  </ul>
+
+</p>
 
 {% endblock %}

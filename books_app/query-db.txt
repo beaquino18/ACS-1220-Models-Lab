@@ -35,3 +35,112 @@ db.session.commit()
 ## Deleting objects
 Book.query.filter_by(id=9).delete()
 db.session.commit()
+
+
+## Adding multiple users in database
+with app.app_context():
+    users = [
+      User(username="hermioneG")
+      User(username="harryP")
+      User(username="ronW")
+    ]
+    db.session.add_all(users)
+    db.session.commit()
+
+## Adding favorite books to current username - hermioneG
+with app.app_context():
+    # Get the specific user by username
+    user = User.query.filter_by(username='hermioneG').first()
+    
+    if not user:
+        print("User not found!")
+    else:
+        # Get the books you want to add
+        book1 = Book.query.filter_by(title="1984").first()
+        book2 = Book.query.filter_by(title="The Handmaid's Tale").first()
+        
+        if not book1 or not book2:
+            print("One or both books not found!")
+        else:
+            # Add the books to the user's favorites if not already there
+            if book1 not in user.favorite_books:
+                user.favorite_books.append(book1)
+                print(f"Added '{book1.title}' to {user.username}'s favorites")
+            else:
+                print(f"'{book1.title}' is already in {user.username}'s favorites")
+                
+            if book2 not in user.favorite_books:
+                user.favorite_books.append(book2)
+                print(f"Added '{book2.title}' to {user.username}'s favorites")
+            else:
+                print(f"'{book2.title}' is already in {user.username}'s favorites")
+            
+            # Commit the changes
+            db.session.commit()
+            print(f"{user.username} now has {len(user.favorite_books)} favorite books")
+
+
+## Adding favorite books to current username - harryP
+with app.app_context():
+    # Get the specific user by username
+    user = User.query.filter_by(username='harryP').first()
+    
+    if not user:
+        print("User not found!")
+    else:
+        # Get the books you want to add
+        book1 = Book.query.filter_by(title="The Great Gatsby").first()
+        book2 = Book.query.filter_by(title="To Kill a Mockingbird").first()
+        
+        if not book1 or not book2:
+            print("One or both books not found!")
+        else:
+            # Add the books to the user's favorites if not already there
+            if book1 not in user.favorite_books:
+                user.favorite_books.append(book1)
+                print(f"Added '{book1.title}' to {user.username}'s favorites")
+            else:
+                print(f"'{book1.title}' is already in {user.username}'s favorites")
+                
+            if book2 not in user.favorite_books:
+                user.favorite_books.append(book2)
+                print(f"Added '{book2.title}' to {user.username}'s favorites")
+            else:
+                print(f"'{book2.title}' is already in {user.username}'s favorites")
+            
+            # Commit the changes
+            db.session.commit()
+            print(f"{user.username} now has {len(user.favorite_books)} favorite books")
+
+## Adding favorite books to current username - ronW
+with app.app_context():
+    # Get the specific user by username
+    user = User.query.filter_by(username='ronW').first()
+    
+    if not user:
+        print("User not found!")
+    else:
+        # Get the books you want to add
+        book1 = Book.query.filter_by(title="Franny and Zooey").first()
+        book2 = Book.query.filter_by(title="Nine Stories").first()
+        
+        if not book1 or not book2:
+            print("One or both books not found!")
+        else:
+            # Add the books to the user's favorites if not already there
+            if book1 not in user.favorite_books:
+                user.favorite_books.append(book1)
+                print(f"Added '{book1.title}' to {user.username}'s favorites")
+            else:
+                print(f"'{book1.title}' is already in {user.username}'s favorites")
+                
+            if book2 not in user.favorite_books:
+                user.favorite_books.append(book2)
+                print(f"Added '{book2.title}' to {user.username}'s favorites")
+            else:
+                print(f"'{book2.title}' is already in {user.username}'s favorites")
+            
+            # Commit the changes
+            db.session.commit()
+            print(f"{user.username} now has {len(user.favorite_books)} favorite books")
+

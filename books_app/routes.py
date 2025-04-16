@@ -25,4 +25,4 @@ def profile(username):
     # first_or_404 return the first matching user or automatically return a 404
     #   if no user is found
     user = User.query.filter_by(username=username).first_or_404()
-    return render_template('profile.html', username=username)
+    return render_template('profile.html', user=user)
